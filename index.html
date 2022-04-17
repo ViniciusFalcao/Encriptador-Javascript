@@ -102,8 +102,9 @@
            
        }
        function copia(){
-           saida.select();
-           document.execCommand("copy");
+           /*saida.select();
+           document.execCommand("copy");*/
+           navigator.clipboard.writeText(saida.value);
            
 
        }
