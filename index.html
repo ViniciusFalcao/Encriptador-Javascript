@@ -29,6 +29,22 @@
        var copiar=document.getElementById("copiar")
        entrada.focus();
 
+       entrada.addEventListener("keypress",function(e){
+           if (!validachar(e)) {
+               e.preventDefault();
+               
+           }
+       })
+       function validachar(e) {
+           const char=String.fromCharCode(e.keyCode);
+           const padrao='[a-z]';
+           if (char.match(padrao)) {
+               return true
+               
+           }
+           
+       }
+
      
 
        function criptografar() {
