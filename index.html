@@ -29,6 +29,24 @@
        var copiar=document.getElementById("copiar")
        entrada.focus();
 
+       entrada.onkeydown=function capturachar(e){
+            if (!validachar(e)) {
+                e.preventDefault();
+                
+            }
+
+
+        }
+
+        function validachar(e){
+            const char=String.fromCharCode(e.keycode);
+            const padrao='[a-z]';
+            if (char.match(padrao)) {
+                return true
+                
+            }
+        }
+
        function criptografar() {
            var s_entrada=String(entrada.value);
            saida.value="";
