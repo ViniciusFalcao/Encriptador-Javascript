@@ -36,11 +36,12 @@
                e.preventDefault();
                
            }
+           console.log(e.keyCode)
        })
        function validachar(e) {
            const char=String.fromCharCode(e.keyCode);
            const padrao='[a-z]';
-           if (char.match(padrao)) {
+           if (char.match(padrao) || e.keyCode==32) {
                return true
                
            }
