@@ -105,9 +105,5 @@ body {
     color: rgb(223, 133, 64);
 }
 @media screen and (max-width:480px) {
-    #texto{
-        position: absolute;
-        left: 0px;
-        width: 100%;
-    }
+    
 }
