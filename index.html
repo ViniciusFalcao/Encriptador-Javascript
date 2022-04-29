@@ -1,142 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Decodificador Javascript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>App de criptografia</title>
 </head>
-<body >
-    <div id="div-entrada">
-        <input id="texto" placeholder="Digite seu Texto"/>
-    <p class="aviso">
-        &#9888; Letras maiúsculas e caracteres especiais não serão digitaveis.
-    </p>
 
-    </div>
-    
-    <div id="retangulo">
-        <textarea name="" id="saida" cols="30" rows="10"></textarea>
-        <img src="imagens/High quality products 1 1imglupa.png" id="imglupa" alt="">
-        <div id="descriçao"><p>Escolha a opção e veja mensagem acima</p></div>
-        <button id="copiar" onclick="copia()">Copiar</button>
-    </div>
-    
-    <div id="botoes">
-        <button id="botao_criptografar" onclick="criptografar()"><h3>Criptografar</h3></button>
-        <button id ="botao_descriptografar" onclick="descriptografar()"><h3>Descriptografar</h3></button>
-    </div>
-   <script>
-       var entrada=document.getElementById("texto");
-       var saida=document.getElementById("saida");
-       var imagem=document.getElementById("imglupa");
-       var descrição=document.getElementById("descriçao");
-       var copiar=document.getElementById("copiar")
-       entrada.focus();
+<body>
+    <main>
+        <ul class="blocos">
+            <li>
+                <input type="text" id="texto" placeholder="Digite seu texto">
+                <p class="aviso"> &#9888; Letras maiúsculas e caracteres especiais não serão digitaveis.</p>
+                <div id="botoes"><button id="botao_criptografar">Criptografar</button>
+                    <button id="botao_descriptografar">Descriptografar</button>
+                </div>
+            </li>
+            <li id="retangulo">
+                <textarea name="" id="saida" cols="30" rows="10"></textarea><br>
+                <p>Escolha a opção e veja mensagem acima</p><br><br>
+                <button id="copiar">Copiar</button>
 
-       entrada.addEventListener("keypress",function(e){
-           if (!validachar(e)) {
-               e.preventDefault();
-               
-           }
-           
-       })
-       function validachar(e) {
-           const char=String.fromCharCode(e.keyCode);
-           const padrao='[a-z]';
-           if (char.match(padrao) || e.keyCode==32) {
-               return true
-               
-           }
-           
-       }
 
-     
+            </li>
+        </ul>
 
-       function criptografar() {
-           var s_entrada=String(entrada.value);
-           saida.value="";
-           for (let index = 0; index < s_entrada.length; index++) {
-               if (s_entrada[index]=="a") {
-                   saida.value+="ai"
-                   
-               } else if (s_entrada[index]=="e") {
-                   saida.value+="enter"
-                   
-               }else if (s_entrada[index]=="i") {
-                   saida.value+="imes"
-                   
-               }else if (s_entrada[index]=="o") {
-                   saida.value+="ober"
-                   
-               }else if (s_entrada[index]=="u") {
-                   saida.value+="ufat"
-                   
-               }else{
-                   saida.value+=s_entrada[index];
-               }
+    </main>
 
-               
-               
-               
-           }
-           imagem.style.visibility="hidden";
-           descrição.style.visibility="hidden";
-           saida.style.visibility="visible";
-           copiar.style.visibility="visible";
-           
-           
-       }
 
-       function descriptografar() {
-           var s_entrada=String(entrada.value);
-           saida.value="";
-           for (let index = 0; index < s_entrada.length; index++) {
-               if (s_entrada[index]=="a") {
-                   saida.value+="a";
-                   index+=1;
-                   
-               }else if(s_entrada[index]=="e"){
-                   saida.value+="e";
-                   index+=4;
+    <script>
+        var entrada = document.getElementById("texto");
+        var saida = document.getElementById("saida");
+        var copiar = document.getElementById("copiar");
+        var botao_crip = document.getElementById("botao_criptografar");
+        var botao_descrip = document.getElementById("botao_descriptografar")
+        entrada.focus();
+        entrada.addEventListener("keypress", function (e) {
+            if (!validachar(e)) {
+                e.preventDefault();
 
-               }else if(s_entrada[index]=="i"){
-                   saida.value+="i";
-                   index+=3;
+            }
 
-               }else if(s_entrada[index]=="o"){
-                   saida.value+="o";
-                   index+=3;
-               }
-               else if(s_entrada[index]=="u"){
-                saida.value+="u";
-                index+=3;
-               }else{
-                saida.value+=s_entrada[index];
+        })
+        function validachar(e) {
+            const char = String.fromCharCode(e.keyCode);
+            const padrao = '[a-z]';
+            if (char.match(padrao) || e.keyCode == 32) {
+                return true
 
-               }
-               
-               
-           }
-           imagem.style.visibility="hidden";
-           descrição.style.visibility="hidden";
-           saida.style.visibility="visible";
-           copiar.style.visibility="visible";
+            }
 
-           
-       }
-       function copia(){
-           /*saida.select();
-           document.execCommand("copy");*/
-           navigator.clipboard.writeText(saida.value);
-           
+        }
 
-       }
-       
-       
-       
-   </script> 
+
+
+        botao_crip.onclick = function criptografar() {
+            var s_entrada = String(entrada.value);
+            saida.value = "";
+            for (let index = 0; index < s_entrada.length; index++) {
+                if (s_entrada[index] == "a") {
+                    saida.value += "ai"
+
+                } else if (s_entrada[index] == "e") {
+                    saida.value += "enter"
+
+                } else if (s_entrada[index] == "i") {
+                    saida.value += "imes"
+
+                } else if (s_entrada[index] == "o") {
+                    saida.value += "ober"
+
+                } else if (s_entrada[index] == "u") {
+                    saida.value += "ufat"
+
+                } else {
+                    saida.value += s_entrada[index];
+                }
+
+
+
+
+            }
+        }
+        botao_descrip.onclick = function descriptografar() {
+            var s_entrada = String(entrada.value);
+            saida.value = "";
+            for (let index = 0; index < s_entrada.length; index++) {
+                if (s_entrada[index] == "a") {
+                    saida.value += "a";
+                    index += 1;
+
+                } else if (s_entrada[index] == "e") {
+                    saida.value += "e";
+                    index += 4;
+
+                } else if (s_entrada[index] == "i") {
+                    saida.value += "i";
+                    index += 3;
+
+                } else if (s_entrada[index] == "o") {
+                    saida.value += "o";
+                    index += 3;
+                }
+                else if (s_entrada[index] == "u") {
+                    saida.value += "u";
+                    index += 3;
+                } else {
+                    saida.value += s_entrada[index];
+
+                }
+
+
+            }
+
+
+
+        }
+        copiar.onclick = function copia() {
+            /*saida.select();
+            document.execCommand("copy");*/
+            navigator.clipboard.writeText(saida.value);
+
+
+        }
+
+
+    </script>
 </body>
+
 </html>
